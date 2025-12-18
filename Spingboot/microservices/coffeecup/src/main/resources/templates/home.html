@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeCup</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,500&family=Open+Sans:wght@200;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<section class="hero" th:style="'background-image: url(/images/background.jpg)'">
+    <header>
+        <nav>
+            <!-- Menu Links -->
+            <ul>
+                <!-- *** SỬA LẠI DÙNG BIẾN TỪ MODEL *** -->
+                <li><a href="/" th:classappend="${currentURI == '/' ? 'active' : ''}">Home</a></li>
+                <li><a href="/about" th:classappend="${currentURI == '/about' ? 'active' : ''}">About</a></li>
+                <li><a href="/menu" th:classappend="${currentURI == '/menu' ? 'active' : ''}">Menu</a></li>
+                <li><a href="/blog" th:classappend="${currentURI == '/blog' ? 'active' : ''}">Blog</a></li>
+                <li><a href="/products" th:classappend="${currentURI != null and currentURI.startsWith('/products') ? 'active' : ''}">Products</a></li> <!-- Thêm kiểm tra null -->
+                <li><a href="/shop" th:classappend="${currentURI == '/shop' ? 'active' : ''}">Shop</a></li>
+                <li><a href="/contact" th:classappend="${currentURI == '/contact' ? 'active' : ''}">Contact</a></li>
+            </ul>
+
+            <!-- Logo và Auth được nhóm lại -->
+            <!-- Sử dụng flex-direction: column để xếp chồng -->
+            <div style="display: flex; flex-direction: column; align-items: flex-start; /* Căn trái bên trong khối này */ margin-left: auto; /* Đẩy khối sang phải */">
+
+                <!-- *** Div.logo bây giờ chứa cả logo và auth *** -->
+                <div class="logo" style="flex-direction: column; align-items: flex-start; /* Cho phép xếp dọc và căn trái bên trong logo div */">
+                    <!-- Phần logo gốc -->
+                    <div style="display: flex; align-items: center;">
+                        <img th:src="@{/images/logo.png}" alt="CoffeeCup Logo">
+                        <span class="logo-text">CoffeeCup</span>
+                    </div>
+
+                    <!-- Khối Login/Register/Logout - ĐẶT BÊN TRONG div.logo -->
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+                        <!-- Hiển thị khi ĐÃ ĐĂNG NHẬP -->
+                        <div sec:authorize="isAuthenticated()" style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #FFFFFF; font-weight: 500; font-size: 16px;">
+                                Hi, <span sec:authentication="name" style="font-weight: 700;">User</span>!
+                            </span>
+                            <form th:action="@{/logout}" method="post" style="display: inline; margin: 0;">
+                                <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" />
+                                <button type="submit" style="background: none; border: none; color: #ff4b00; cursor: pointer; font-size: 16px; font-weight: 700; padding: 0;">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                        <!-- Hiển thị khi CHƯA ĐĂNG NHẬP -->
+                        <div sec:authorize="!isAuthenticated()">
+                            <a th:href="@{/login}" style="color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700;">Login</a>
+                            <a th:href="@{/register}" style="color: #ff4b00; text-decoration: none; margin-left: 15px; font-size: 16px; font-weight: 700;">Register</a>
+                        </div>
+                    </div>
+                    <!-- Hết Khối Login/Register/Logout -->
+                </div>
+                <!-- Hết div.logo -->
+
+            </div>
+            <!-- Hết khối bao bọc -->
+
+        </nav>
+    </header>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <h1>Coffee</h1>
+        <h2>Everything You Love About Coffee</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a href="/products" class="btn">Order Now</a>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeCup - Shop Info</title>
+    <!-- Link CSS chung -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Link CSS dành riêng cho trang Shop -->
+    <link rel="stylesheet" th:href="@{/css/shop.css}">
+    <!-- Thêm font từ Google Fonts (Cần Cormorant Garamond và Open Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body> <!-- Bỏ class shop-page-body nếu không cần style nền riêng -->
+
+<!-- Header (Đảm bảo 'Shop' là active) -->
+<header class="header-fixed"> <!-- Giả sử dùng class này -->
+    <nav>
+        <ul>
+            <!-- *** SỬA LẠI DÙNG BIẾN TỪ MODEL *** -->
+            <li><a href="/" th:classappend="${currentURI == '/' ? 'active' : ''}">Home</a></li>
+            <li><a href="/about" th:classappend="${currentURI == '/about' ? 'active' : ''}">About</a></li>
+            <li><a href="/menu" th:classappend="${currentURI == '/menu' ? 'active' : ''}">Menu</a></li>
+            <li><a href="/blog" th:classappend="${currentURI == '/blog' ? 'active' : ''}">Blog</a></li>
+            <li><a href="/products" th:classappend="${currentURI != null and currentURI.startsWith('/products') ? 'active' : ''}">Products</a></li> <!-- Thêm kiểm tra null -->
+            <li><a href="/shop" th:classappend="${currentURI == '/shop' ? 'active' : ''}">Shop</a></li>
+            <li><a href="/contact" th:classappend="${currentURI == '/contact' ? 'active' : ''}">Contact</a></li>
+        </ul>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="CoffeeCup Logo">
+            <span class="logo-text">CoffeeCup</span>
+        </div>
+    </nav>
+</header>
+
+<!-- Nội dung chính trang Shop -->
+<main class="shop-page-container">
+
+    <!-- Section Giờ Mở Cửa -->
+    <section class="opening-hours-section">
+        <h2 class="section-title">We are Open</h2>
+        <div class="hours-blocks">
+            <div class="hour-block">
+                <p class="days">Monday - Friday</p>
+                <p class="time">8:00 am - 11:30 pm</p>
+            </div>
+            <div class="hour-block">
+                <p class="days">Saturday and Sunday</p>
+                <p class="time">9:00 am - 10:30 pm</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Chi Nhánh -->
+    <section class="branches-section">
+        <h2 class="section-title">Our Branches</h2>
+        <div class="branch-cards">
+            <!-- Chi nhánh 1: New York -->
+            <div class="branch-card">
+                <img th:src="@{/images/branch-ny.jpg}" alt="New York Branch" class="branch-image"> <!-- <<-- THAY TÊN FILE -->
+                <div class="branch-info">
+                    <h3 class="branch-name">New York</h3>
+                    <p class="branch-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                </div>
+            </div>
+            <!-- Chi nhánh 2: Texas -->
+            <div class="branch-card">
+                <img th:src="@{/images/branch-tx.jpg}" alt="Texas Branch" class="branch-image"> <!-- <<-- THAY TÊN FILE -->
+                <div class="branch-info">
+                    <h3 class="branch-name">Texas</h3>
+                    <p class="branch-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                </div>
+            </div>
+            <!-- Chi nhánh 3: New Jersey -->
+            <div class="branch-card">
+                <img th:src="@{/images/branch-nj.jpg}" alt="New Jersey Branch" class="branch-image"> <!-- <<-- THAY TÊN FILE -->
+                <div class="branch-info">
+                    <h3 class="branch-name">New Jersy</h3> <!-- Lưu ý chính tả: Jersey -->
+                    <p class="branch-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer (Nếu có) -->
+<!--
+<footer>
+     ...
+</footer>
+-->
+
+</body>
+</html>

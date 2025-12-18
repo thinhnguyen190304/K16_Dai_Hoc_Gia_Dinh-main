@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CoffeeCup</title>
+    <!-- Link Google Font Proza Libre (Thêm weight 700 nếu tiêu đề cần đậm hơn) -->
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <!-- Logo bên trái -->
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="CoffeeCup Logo">
+            <span class="logo-text">CoffeeCup</span>
+        </div>
+
+        <!-- Khối Info/Contact bên phải (Đã chuyển lên header) -->
+        <div class="info-and-contact">
+            <div class="info">
+                <h3>Information.</h3>
+                <ul>
+                    <!-- *** SỬA LẠI DÙNG BIẾN TỪ MODEL *** -->
+                    <li><a href="/" th:classappend="${currentURI == '/' ? 'active' : ''}">Home</a></li>
+                    <li><a href="/about" th:classappend="${currentURI == '/about' ? 'active' : ''}">About</a></li>
+                    <li><a href="/menu" th:classappend="${currentURI == '/menu' ? 'active' : ''}">Menu</a></li>
+                    <li><a href="/blog" th:classappend="${currentURI == '/blog' ? 'active' : ''}">Blog</a></li>
+                    <li><a href="/products" th:classappend="${currentURI != null and currentURI.startsWith('/products') ? 'active' : ''}">Products</a></li> <!-- Thêm kiểm tra null -->
+                    <li><a href="/shop" th:classappend="${currentURI == '/shop' ? 'active' : ''}">Shop</a></li>
+                    <li><a href="/contact" th:classappend="${currentURI == '/contact' ? 'active' : ''}">Contact</a></li>
+                    <li><a href="#">Map</a></li> <!-- Hoặc link đến trang Map -->
+                </ul>
+            </div>
+            <div class="contact">
+                <h3>Contact Us.</h3>
+                <p>Support</p>
+                <p>your_id@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main giờ chỉ còn là khoảng trống để đẩy footer xuống -->
+<main>
+    <!-- Không cần nội dung ở đây -->
+</main>
+
+<footer>
+    <div class="container">
+        <!-- Nav links bên trái -->
+        <div class="nav-links">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/about}">About</a>
+            <a th:href="@{/menu}">Menu</a>
+            <a th:href="@{/blog}">Blog</a>
+            <a th:href="@{/shop}">Shop</a>
+            <a th:href="@{/products}">Product</a> <!-- Đã sửa từ /product-list.html sang /products -->
+            <a th:href="@{/contact}" class="active">Contact</a>
+        </div>
+        <!-- Social icons bên phải -->
+        <div class="social-icons">
+            <a href="#"><img th:src="@{/images/facebook.png}" alt="Facebook"></a>
+            <a href="#"><img th:src="@{/images/instagram.png}" alt="Instagram"></a>
+            <a href="#"><img th:src="@{/images/twitter.png}" alt="Twitter"></a>
+            <a href="#"><img th:src="@{/images/youtube.png}" alt="YouTube"></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

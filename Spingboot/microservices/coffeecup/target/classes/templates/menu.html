@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeCup - Menu</title>
+    <!-- Link CSS chung -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Link CSS dành riêng cho trang Menu -->
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <!-- Thêm font từ Google Fonts (Cần Cormorant Garamond và Open Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header (Đảm bảo có class header-fixed nếu muốn cố định) -->
+<header class="header-fixed">
+    <nav>
+        <ul>
+            <!-- *** SỬA LẠI DÙNG BIẾN TỪ MODEL *** -->
+            <li><a href="/" th:classappend="${currentURI == '/' ? 'active' : ''}">Home</a></li>
+            <li><a href="/about" th:classappend="${currentURI == '/about' ? 'active' : ''}">About</a></li>
+            <li><a href="/menu" th:classappend="${currentURI == '/menu' ? 'active' : ''}">Menu</a></li>
+            <li><a href="/blog" th:classappend="${currentURI == '/blog' ? 'active' : ''}">Blog</a></li>
+            <li><a href="/products" th:classappend="${currentURI != null and currentURI.startsWith('/products') ? 'active' : ''}">Products</a></li> <!-- Thêm kiểm tra null -->
+            <li><a href="/shop" th:classappend="${currentURI == '/shop' ? 'active' : ''}">Shop</a></li>
+            <li><a href="/contact" th:classappend="${currentURI == '/contact' ? 'active' : ''}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Dark Coffees Section -->
+    <section id="dark-coffee-section" class="menu-item">
+        <div class="menu-content">
+            <!-- Phần nền trắng -->
+            <div class="menu-text white-side">
+                <h2>Dark<br>Coffees</h2>
+                <a th:href="@{/products}" class="btn">Order Now</a> <!-- Đổi từ /order sang /products -->
+            </div>
+            <!-- Phần ảnh nền xanh -->
+            <div class="menu-image-side blue-side-right">
+                <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+            <!-- Đưa image-wrapper ra ngoài -->
+            <div class="image-wrapper">
+                <img th:src="@{/images/dark_coffees.png}" alt="Dark Coffee">
+            </div>
+        </div>
+    </section>
+
+    <!-- Cold Coffees Section -->
+    <section id="cold-coffee-section" class="menu-item reverse">
+        <div class="menu-content">
+            <div class="menu-image-side blue-side-left">
+                <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+            <div class="menu-text white-side">
+                <h2>Cold<br>Coffees</h2>
+                <a th:href="@{/products}" class="btn">Order Now</a> <!-- Đổi từ /order sang /products -->
+            </div>
+            <div class="image-wrapper">
+                <img th:src="@{/images/cold_coffees.png}" alt="Cold Coffee">
+            </div>
+        </div>
+    </section>
+
+    <!-- Hot Coffees Section -->
+    <section id="hot-coffee-section" class="menu-item">
+        <div class="menu-content">
+            <div class="menu-text white-side">
+                <h2>Hot<br>Coffees</h2>
+                <a th:href="@{/products}" class="btn">Order Now</a> <!-- Đổi từ /order sang /products -->
+            </div>
+            <div class="menu-image-side blue-side-right">
+                <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+            <div class="image-wrapper">
+                <img th:src="@{/images/hot_coffees.png}" alt="Hot Coffee">
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

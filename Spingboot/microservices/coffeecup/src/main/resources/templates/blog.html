@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoffeeCup - Blog</title>
+    <!-- Link CSS chung -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Link CSS dành riêng cho trang Blog -->
+    <link rel="stylesheet" th:href="@{/css/blog.css}">
+    <!-- Thêm font từ Google Fonts (Cần Cormorant Garamond 700 và Open Sans 400) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+</head>
+<body> <!-- Bỏ class blog-page-body nếu không cần style nền riêng -->
+
+<!-- Header (Đảm bảo 'Blog' là active) -->
+<header class="header-fixed"> <!-- Giả sử dùng class này cho header cố định -->
+    <nav>
+        <ul>
+            <!-- *** SỬA LẠI DÙNG BIẾN TỪ MODEL *** -->
+            <li><a href="/" th:classappend="${currentURI == '/' ? 'active' : ''}">Home</a></li>
+            <li><a href="/about" th:classappend="${currentURI == '/about' ? 'active' : ''}">About</a></li>
+            <li><a href="/menu" th:classappend="${currentURI == '/menu' ? 'active' : ''}">Menu</a></li>
+            <li><a href="/blog" th:classappend="${currentURI == '/blog' ? 'active' : ''}">Blog</a></li>
+            <li><a href="/products" th:classappend="${currentURI != null and currentURI.startsWith('/products') ? 'active' : ''}">Products</a></li> <!-- Thêm kiểm tra null -->
+            <li><a href="/shop" th:classappend="${currentURI == '/shop' ? 'active' : ''}">Shop</a></li>
+            <li><a href="/contact" th:classappend="${currentURI == '/contact' ? 'active' : ''}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Nội dung chính của trang Blog -->
+<main class="blog-page-container">
+
+    <!-- Tiêu đề chính của trang -->
+    <h1 class="page-title">Customer Reviews</h1>
+
+    <!-- Khối chứa review -->
+    <section class="review-container">
+        <div class="review-content">
+            <!-- Cột ảnh bên trái -->
+            <div class="review-image-col">
+                <img th:src="@{/images/customer-photo.jpg}"
+                alt="Happy customer enjoying coffee"
+                class="review-photo">
+            </div>
+            <!-- Cột text bên phải -->
+            <div class="review-text-col">
+                <!-- Review 1 -->
+                <div class="review-item">
+                    <h3>John Peter</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-item">
+                    <h3>Ella Thomson</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>
